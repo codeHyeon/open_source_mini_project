@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Memo</title>
+</head>
+<body>
+
+<h1>Delete Memo</h1>
+
+<ul>
+{% for memo in memos %}
+    <li>
+        {{ memo }}
+        <a href="/remove/{{ loop.index0 }}">Delete</a>
+    </li>
+{% endfor %}
+</ul>
+
+<br>
+<a href="/">Back</a>
+
+</body>
+</html>
