@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Memo App</title>
+</head>
+<body>
+
+<h1>Memo List</h1>
+
+<a href="/add">Add Memo</a>
+<br><br>
+<a href="/delete">Delete Memo</a>
+
+<ul>
+{% for memo in memos %}
+    <li>{{ memo }}</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>
