@@ -1,19 +1,20 @@
 from flask import Flask, render_template, request, redirect, url_for
+from services.memo_service import MemoService
 
 app = Flask(__name__)
 
-memos = []
+memo_service = MemoService()
 
 @app.route("/")
 def index():
-    return render_template("index.html", memos=memos)
+    return render_template("index.html", memos=memo_service.get_memos())
 
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "POST":
         memo = request.form.get("memo")
-        memos.append(memo)
+        memo_service.add_memo(memo)
         return redirect(url_for("index"))
 
     return render_template("add.html")
@@ -21,14 +22,12 @@ def add():
 
 @app.route("/delete")
 def delete():
-    return render_template("delete.html", memos=memos)
+    return render_template("delete.html", memos=memo_service.get_memos())
 
 
 @app.route("/remove/<int:id>")
 def remove(id):
-    if 0 <= id < len(memos):
-        memos.pop(id)
-
+    memo_service.delete_memo(id)
     return redirect(url_for("delete"))
 
 
