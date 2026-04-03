@@ -4,12 +4,12 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 import pytest
-from app import app, memos
+from app import app, memo_service
 
 # 모든 테스트 실행 전에 memos 초기화
 @pytest.fixture(autouse=True)
 def clear_memos():
-    memos.clear()
+    memo_service.memos.clear()
 
 # 메인 페이지("/")가 정상적으로 열리는지 테스트
 def test_index_page():
